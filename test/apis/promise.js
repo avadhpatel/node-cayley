@@ -397,6 +397,18 @@ describe('Cayley bluebird Promise style Gizmo APIs', function() {
     });
   });
 
+  it('path.SaveInPredicates(predicate, tag)', function() {
+    return cayleyClient.g.V('</user/shortid/BJg4Kj2HOe>').SaveInPredicates('target').All().then((res) => {
+      assert.isArray(res.result);
+    });
+  });
+
+  it('path.SaveOutPredicates(predicate, tag)', function() {
+    return cayleyClient.g.V('</user/shortid/BJg4Kj2HOe>').SaveOutPredicates('target').All().then((res) => {
+      assert.isArray(res.result);
+    });
+  });
+
   it('path.Intersect(query)', function() {
     const queryA = cayleyClient.g.V('</user/shortid/46Juzcyx>').Out('<follows>');
     const queryB = cayleyClient.g.V('</user/shortid/hwX6aOr7>').Out('<follows>');
