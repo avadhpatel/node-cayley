@@ -464,6 +464,20 @@ describe('Cayley bluebird Promise style Gizmo APIs', function() {
     });
   });
 
+  it('path.V().Count()', function() {
+    return cayleyClient.g.V().Count().then((res) => {
+	    console.log("Res", JSON.stringify(res,null,2))
+      expect(res).to.eq(1)
+    })
+  })
+
+  it('path.V().Unique()', function() {
+    return cayleyClient.g.V().Unique().All().then((res) => {
+      assert.isArray(res.result);
+      expect(res.result).to.have.length.gt(1);
+    });
+  });
+
   it('query.GetLimit(size, callback)', function() {
     return cayleyClient.g.V().GetLimit(1).then((res) => {
       assert.isArray(res.result);
